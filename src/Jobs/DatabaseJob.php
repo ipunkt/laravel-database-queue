@@ -149,5 +149,13 @@ class DatabaseJob extends \Illuminate\Queue\Jobs\Job
 		return $this->job->payload;
 	}
 
+	/**
+	 * Return the queue name from the model
+	 *
+	 * @return string
+	 */
+	public function getQueue() {
+		return $this->job->queue;
+	}
 
 }
