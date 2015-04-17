@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQueuesTable extends Migration {
+class AlterQueuesTableAddIndex extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,10 @@ class CreateQueuesTable extends Migration {
 	 */
 	public function up()
 	{
-        Schema::table('queues', function(Blueprint $table)
-        {
-	        $table->index(array('query', 'status', 'timestamp'));
-        });
+		Schema::table('queues', function(Blueprint $table)
+		{
+			$table->index(array('queue', 'status', 'timestamp'));
+		});
 	}
 
 	/**
@@ -27,7 +27,7 @@ class CreateQueuesTable extends Migration {
 	{
 		Schema::table('queues', function(Blueprint $table)
 		{
-			$table->dropIndex('queues_query_status_timestamp_index');
+			$table->dropIndex('queues_queue_status_timestamp_index');
 		});
 	}
 
