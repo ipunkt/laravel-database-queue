@@ -91,13 +91,13 @@ class DatabaseQueue extends Queue implements QueueInterface {
 	{
 		$queue = $queue ? $queue : $this->default;
 
-		$job = Job::where('timestamp', '<', date('Y-m-d H:i:s', time()))
-			->where('queue', '=', $queue)
+		$job = Job::query()->where('queue', '=', $queue)
 			->where(function(Builder $query) {
 				$query->where('status', '=', Job::STATUS_OPEN);
 				$query->orWhere('status', '=', Job::STATUS_WAITING);
 			})
-			->orderBy('id')
+			->where('timestamp', '<', date('Y-m-d H:i:s', time()))
+			->orderBy('timestamp')
 			->first()
 			;
 
