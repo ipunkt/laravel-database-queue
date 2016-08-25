@@ -4,10 +4,21 @@
 This is a real queue driver, like beanstalkd or redis one.
 You need a daemon like supervisor or similar to listen to your queue.
 
+**ATTENTION**: We now support the right table structure for Laravel 5.2 and Laravel 5.3.
+
 ### Install
 Add the package to the require section of your composer.json and run `composer update`
 
-    "davelip/laravel-database-queue": "0.3.*"
+    "davelip/laravel-database-queue": "dev-master"
+
+And add our repository source
+
+	"repositories": [
+	      {
+	        "type": "vcs",
+	        "url": "https://github.com/ipunkt/laravel-database-queue"
+	      }
+	    ]
 
 Add the Service Provider to the providers array in config/app.php
 

@@ -92,7 +92,7 @@ class DatabaseJob extends \Illuminate\Queue\Jobs\Job
 		$now->addSeconds($delay);
 		$this->job->timestamp = $now->toIso8601String();
 		$this->job->status = Job::STATUS_WAITING;
-		$this->job->retries += 1;
+		$this->job->attempts += 1;
 		$this->job->save();
 		$this->released = true;
 	}
@@ -125,7 +125,7 @@ class DatabaseJob extends \Illuminate\Queue\Jobs\Job
 	 * @return int
 	 */
 	public function attempts() {
-		return ($this->job->retries + 1);
+		return ($this->job->attempts + 1);
 	}
 
 	/**

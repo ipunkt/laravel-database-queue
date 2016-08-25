@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $id
  * @property string  $queue
  * @property integer $status
- * @property integer $retries
+ * @property integer $attempts
  * @property integer $timestamp
+ * @property integer $reserved
+ * @property integer $reserved_at
+ * @property integer $available_at
  * @property string  $payload
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -23,4 +26,14 @@ class Job extends Model
 
     protected $table = 'queues';
     protected $guarded = array('id', 'created_at', 'updated_at');
+
+    /**
+     * attribute retries supported
+     *
+     * @return int
+     */
+    public function getRetriesAttribute()
+    {
+        return $this->attempts;
+    }
 }
